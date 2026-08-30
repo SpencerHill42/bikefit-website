@@ -1,0 +1,1306 @@
+/* ==========================================================================
+   Mobile BikeFit München — bikefit-muc.de
+   Reines CSS, kein Framework, kein Build-Schritt.
+   Mobile zuerst (Entwurf: docs/website/mockup/Main.dc.html, 390 px),
+   ab 800 px das Desktop-Layout (Desktop.dc.html, 1280 px).
+   ========================================================================== */
+
+/* --- Schrift: lokal eingebettet, nicht von Google ausgeliefert ------------
+   Manrope als variable Schrift (400-800) in zwei Subsets. Lokal statt per
+   fonts.googleapis.com, damit beim Seitenaufruf keine IP-Adresse des Besuchers
+   an einen Dritten geht - dann braucht die Seite auch keinen Cookie-Banner.
+   Lizenz: SIL Open Font License 1.1, siehe assets/fonts/OFL.txt.            */
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("assets/fonts/manrope-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("assets/fonts/manrope-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* --- Farben und Masse ----------------------------------------------------
+   Die Markenfarben stehen so auch im Analyse-Tool selbst (Report, Streamlit-
+   Oberflaeche, assets/brand/README.md im bikefit-Repo) - wer sie hier aendert,
+   sollte sie dort mitaendern.
+
+   --terracotta-tief ist eine bewusste Ergaenzung, kein zweiter Markenton:
+   weisser Text auf #D97757 erreicht nur 3,1:1 und faellt damit durch die
+   WCAG-AA-Schwelle von 4,5:1 (Lighthouse meldet das als Fehler). Ueberall dort,
+   wo Text auf oder in Terracotta steht - Buttons, Preisband, Links, Eyebrow -
+   steht deshalb der tiefere Ton (4,9:1 auf Weiss, 4,7:1 auf Creme). Das reine
+   #D97757 bleibt fuer Flaechen und Grafik ohne Text (Haken-Icons, Akzentlinien),
+   dort gilt die 3:1-Schwelle und die ist erfuellt.
+   Zurueckdrehen auf den Mockup-Stand: --terracotta-tief auf #D97757 setzen.  */
+
+:root {
+  --creme: #fbfaf8;
+  --weiss: #ffffff;
+  --tinte: #1b1917;
+  --tinte-weich: #3d3935;
+  --grau: #6b655e;
+  --grau-klein: #736c64;      /* fuer 12-13 px Kleintext, s. Kommentar oben */
+  --grau-auf-dunkel: #8a837b;
+  --hell-auf-dunkel: #cfc9c2;
+  --linie: #e8e4df;
+  --linie-dunkel: #33302c;
+  --linie-strich: #c9c2ba;
+  --terracotta: #d97757;
+  --terracotta-tief: #b85334;
+  --terracotta-hover: #9d4429;
+
+  --rand: 20px;               /* Seitenrand mobil */
+  --radius: 8px;
+  --radius-gross: 10px;
+}
+
+/* --- Grundlagen ---------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Anker nicht unter dem klebenden Kopf verschwinden lassen */
+  scroll-padding-top: 84px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--tinte);
+  font-family: "Manrope", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--terracotta-tief);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--terracotta-hover);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--terracotta-tief);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Sprungmarke fuer Tastatur- und Screenreader-Nutzung */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--tinte);
+  color: var(--creme);
+  padding: 12px 18px;
+  border-radius: 0 0 var(--radius) 0;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  left: 0;
+  color: var(--creme);
+}
+
+.sektion {
+  padding: 44px var(--rand) 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sektion h2 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* --- Buttons ------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.btn-primaer {
+  background: var(--terracotta-tief);
+  color: var(--weiss);
+}
+
+.btn-primaer:hover {
+  background: var(--terracotta-hover);
+  color: var(--weiss);
+}
+
+.btn-sekundaer {
+  background: transparent;
+  color: var(--tinte);
+  border: 1.5px solid var(--tinte);
+}
+
+.btn-sekundaer:hover {
+  color: var(--tinte);
+  background: rgba(27, 25, 23, 0.05);
+}
+
+.btn-hell {
+  background: var(--creme);
+  color: var(--tinte);
+}
+
+.btn-hell:hover {
+  color: var(--tinte);
+  background: var(--weiss);
+}
+
+.btn-umriss-hell {
+  background: transparent;
+  color: var(--creme);
+  border: 1.5px solid var(--grau);
+}
+
+.btn-umriss-hell:hover {
+  color: var(--creme);
+  border-color: var(--hell-auf-dunkel);
+}
+
+/* --- Kopf ---------------------------------------------------------------- */
+
+.kopf {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--creme);
+  border-bottom: 1px solid var(--linie);
+}
+
+.kopf-zeile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px var(--rand);
+}
+
+.marke {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--tinte);
+}
+
+.marke:hover {
+  color: var(--tinte);
+}
+
+.marke img {
+  width: 52px;
+  height: auto;
+}
+
+.marke-text {
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.marke-text span {
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  color: var(--grau);
+}
+
+.kopf-rechts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kopf .btn-termin {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.nur-breit {
+  display: none;
+}
+
+/* Menuknopf: nur mobil sichtbar */
+.menu-knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 1.5px solid var(--linie);
+  border-radius: 6px;
+  color: var(--tinte);
+  cursor: pointer;
+}
+
+.menu-knopf svg {
+  display: block;
+}
+
+.menu-knopf .icon-schliessen {
+  display: none;
+}
+
+.menu-knopf[aria-expanded="true"] .icon-oeffnen {
+  display: none;
+}
+
+.menu-knopf[aria-expanded="true"] .icon-schliessen {
+  display: block;
+}
+
+.hauptnav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  padding: 4px var(--rand) 16px;
+  background: var(--creme);
+  border-top: 1px solid var(--linie);
+  border-bottom: 1px solid var(--linie);
+}
+
+.hauptnav.offen {
+  display: flex;
+}
+
+.hauptnav a {
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--tinte);
+  border-bottom: 1px solid var(--linie);
+}
+
+.hauptnav a:last-child {
+  border-bottom: none;
+}
+
+.hauptnav a:hover {
+  color: var(--terracotta-tief);
+}
+
+/* --- Hero ---------------------------------------------------------------- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 36px var(--rand) 0;
+}
+
+.hero-spalte {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta-tief);
+}
+
+.hero h1 {
+  font-size: 34px;
+  line-height: 1.12;
+  font-weight: 800;
+  text-wrap: pretty;
+}
+
+.hero-text {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--tinte-weich);
+  text-wrap: pretty;
+}
+
+.hero-knoepfe {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kleinzeile {
+  font-size: 13px;
+  color: var(--grau);
+  line-height: 1.5;
+}
+
+/* --- Foto-Platzhalter ----------------------------------------------------
+   Neutrale Flaechen, bis die echten Fotos da sind. Der Beschreibungstext steht
+   sichtbar drin und ist damit zugleich der Alternativtext - die Flaeche traegt
+   role="img" mit aria-label, damit Screenreader sie als Bildplatz ansagen.   */
+
+.foto-platz {
+  border: 1.5px dashed var(--linie-strich);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  background: var(--weiss);
+}
+
+.foto-platz p {
+  font-size: 13px;
+  color: var(--grau-klein);
+  line-height: 1.5;
+}
+
+.foto-hero {
+  aspect-ratio: 4 / 3;
+}
+
+.foto-ablauf {
+  aspect-ratio: 16 / 10;
+  margin-top: 22px;
+}
+
+/* "Was du brauchst" ist mobil ein eigener Abschnitt und wird ab 800 px zur
+   Karte neben dem Ablauf - deshalb steht es im HTML in der zweiten Spalte. */
+.brauchst {
+  padding: 44px 0 12px;
+}
+
+.foto-portrait {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 12px;
+}
+
+.foto-portrait p {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Wenn ein Platzhalter spaeter durch ein echtes Bild ersetzt wird, uebernimmt
+   das <img> dieselbe Klasse (foto-hero / foto-ablauf / foto-portrait) und
+   behaelt damit Seitenverhaeltnis und Position. */
+img.foto-hero,
+img.foto-ablauf,
+img.foto-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  border-radius: var(--radius);
+}
+
+img.foto-portrait {
+  border-radius: 50%;
+  padding: 0;
+}
+
+/* --- Gruende (Karten) ---------------------------------------------------- */
+
+.karten {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.karte {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+}
+
+.karte h3 {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.karte p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--tinte-weich);
+}
+
+/* --- Ablauf -------------------------------------------------------------- */
+
+.ablauf {
+  display: flex;
+  flex-direction: column;
+  padding: 44px var(--rand) 12px;
+}
+
+.ablauf-spalte {
+  display: flex;
+  flex-direction: column;
+}
+
+.ablauf-neben {
+  display: flex;
+  flex-direction: column;
+}
+
+.sektion-kopf {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sektion-kopf p {
+  font-size: 14px;
+  color: var(--grau);
+}
+
+.schritte {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  counter-reset: schritt;
+}
+
+.schritte li {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--linie);
+  counter-increment: schritt;
+}
+
+.schritte li:last-child {
+  border-bottom: 1px solid var(--linie);
+}
+
+.schritte li::before {
+  content: counter(schritt);
+  flex: 0 0 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--tinte);
+  color: var(--weiss);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* Schritt 3 (die eigentliche Analyse) ist im Entwurf farblich hervorgehoben */
+.schritte li.hervor::before {
+  background: var(--terracotta-tief);
+}
+
+.schritte h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.schritte p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--tinte-weich);
+}
+
+/* --- Was du brauchst ----------------------------------------------------- */
+
+.mitbringen {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--tinte-weich);
+  margin-top: 14px;
+}
+
+.haken-liste {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.haken-liste li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--tinte-weich);
+}
+
+.haken-liste svg {
+  flex: 0 0 20px;
+  margin-top: 2px;
+}
+
+/* --- Preise -------------------------------------------------------------- */
+
+.preise {
+  display: flex;
+  flex-direction: column;
+  padding: 44px var(--rand) 12px;
+}
+
+.preis-neben {
+  display: flex;
+  flex-direction: column;
+}
+
+.preis-karte {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px 20px;
+  background: var(--tinte);
+  color: var(--creme);
+  border-radius: var(--radius-gross);
+  margin-top: 18px;
+}
+
+.preis-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.preis-kopf h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.preis-zahl {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.preis-karte .leistungen {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--hell-auf-dunkel);
+}
+
+.aktion {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--terracotta-tief);
+  border-radius: 6px;
+}
+
+.aktion-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--weiss);
+}
+
+.aktion p:last-child {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--weiss);
+  line-height: 1.4;
+}
+
+.preis-liste {
+  display: flex;
+  flex-direction: column;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius-gross);
+  margin-top: 18px;
+}
+
+.preis-liste div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--linie);
+}
+
+.preis-liste div:last-child {
+  border-bottom: none;
+}
+
+.preis-liste p:first-child {
+  font-size: 15px;
+  color: var(--tinte-weich);
+}
+
+.preis-liste p:last-child {
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.rechtszeile {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--grau-klein);
+  margin-top: 18px;
+}
+
+.preis-karte .btn {
+  align-self: flex-start;
+}
+
+/* --- Ueber mich ---------------------------------------------------------- */
+
+.ueber-mich {
+  gap: 16px;
+}
+
+.ueber-mich h2 {
+  margin-top: 16px;
+}
+
+.ueber-mich p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tinte-weich);
+  text-wrap: pretty;
+  margin-top: 16px;
+}
+
+/* --- FAQ ----------------------------------------------------------------- */
+
+.faq-liste {
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+}
+
+.faq-liste > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 0;
+  border-top: 1px solid var(--linie);
+}
+
+.faq-liste > div:last-child {
+  border-bottom: 1px solid var(--linie);
+}
+
+.faq-liste h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.faq-liste p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--tinte-weich);
+}
+
+/* --- Kontakt ------------------------------------------------------------- */
+
+.kontakt {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 44px var(--rand) 40px;
+  margin-top: 32px;
+  background: var(--tinte);
+  color: var(--creme);
+}
+
+.kontakt-spalte {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kontakt h2 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.kontakt-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--hell-auf-dunkel);
+  text-wrap: pretty;
+}
+
+.kontakt-knoepfe {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+/* --- Fusszeile ----------------------------------------------------------- */
+
+.fuss {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px var(--rand) 28px;
+  background: var(--tinte);
+  color: var(--grau-auf-dunkel);
+  border-top: 1px solid var(--linie-dunkel);
+}
+
+.fuss p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.fuss nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.fuss a,
+.fuss .noch-offen {
+  font-size: 12px;
+  color: var(--hell-auf-dunkel);
+}
+
+.fuss a:hover {
+  color: var(--weiss);
+}
+
+.fuss .noch-offen {
+  color: var(--grau-auf-dunkel);
+}
+
+/* --- Rechtsseiten (Impressum, Datenschutz) ------------------------------- */
+
+.rechtstext {
+  padding: 36px var(--rand) 56px;
+  max-width: 760px;
+}
+
+.rechtstext h1 {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.rechtstext h2 {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 32px 0 10px;
+}
+
+.rechtstext p,
+.rechtstext li {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--tinte-weich);
+}
+
+.rechtstext p + p {
+  margin-top: 12px;
+}
+
+.rechtstext ul {
+  margin: 10px 0 0;
+  padding-left: 22px;
+}
+
+.rechtstext li {
+  margin-bottom: 8px;
+}
+
+.rechtstext .anschrift {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--tinte);
+}
+
+.hinweis {
+  padding: 16px 18px;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-left: 4px solid var(--terracotta);
+  border-radius: var(--radius);
+  margin: 20px 0 8px;
+}
+
+.hinweis p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.zurueck {
+  display: inline-block;
+  margin-top: 36px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   Desktop ab 800 px — Layout nach Desktop.dc.html (Entwurfsbreite 1280 px)
+   ========================================================================== */
+
+@media (min-width: 800px) {
+  :root {
+    --rand: 64px;
+    --radius: 10px;
+    --radius-gross: 12px;
+  }
+
+  html {
+    scroll-padding-top: 100px;
+  }
+
+  .inhalt {
+    /* Der Entwurf ist 1280 px breit; darueber laeuft die Seite nicht weiter
+       auseinander, sondern bleibt zentriert. */
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .btn {
+    min-height: 50px;
+    padding: 0 26px;
+  }
+
+  /* Kopf: waagerechte Navigation statt Menuknopf */
+  .kopf-zeile {
+    padding: 18px var(--rand);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .marke img {
+    width: 60px;
+  }
+
+  .marke-text {
+    font-size: 15px;
+  }
+
+  .marke-text span {
+    font-size: 12px;
+  }
+
+  .menu-knopf {
+    display: none;
+  }
+
+  .hauptnav,
+  .hauptnav.offen {
+    display: flex;
+    position: static;
+    background: none;
+    border-bottom: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    padding: 0;
+    border-top: none;
+  }
+
+  .hauptnav a {
+    padding: 0;
+    font-size: 15px;
+    border-bottom: none;
+  }
+
+  .kopf-rechts {
+    gap: 32px;
+  }
+
+  .kopf .btn-termin {
+    min-height: 44px;
+    padding: 0 20px;
+    font-size: 15px;
+  }
+
+  .nur-breit {
+    display: inline;
+  }
+
+  /* Hero zweispaltig, Foto rechts */
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 64px;
+    align-items: center;
+    padding: 88px var(--rand) 72px;
+  }
+
+  .hero-spalte {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+  }
+
+  .hero h1 {
+    font-size: 54px;
+    line-height: 1.06;
+  }
+
+  .hero-text {
+    font-size: 19px;
+    max-width: 520px;
+  }
+
+  .hero-knoepfe {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .kleinzeile {
+    font-size: 14px;
+  }
+
+  /* Kein height/align-self hier: zusammen mit aspect-ratio wuerde der Browser
+     die Breite aus der Hoehe rechnen und die Kachel ueber den rechten Rand
+     schieben. So gibt die Spaltenbreite die Hoehe vor, wie im Entwurf. */
+  .foto-hero {
+    margin: 0;
+  }
+
+  .foto-platz p {
+    font-size: 14px;
+  }
+
+  .sektion h2 {
+    font-size: 32px;
+  }
+
+  /* Gruende dreispaltig */
+  .gruende {
+    padding: 24px var(--rand) 64px;
+  }
+
+  .karten {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .karte {
+    padding: 24px;
+    gap: 8px;
+  }
+
+  .karte h3 {
+    font-size: 19px;
+  }
+
+  .karte p {
+    line-height: 1.6;
+  }
+
+  /* Ablauf: Schritte links, Foto + "Was du brauchst" rechts */
+  .ablauf {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 64px;
+    padding: 40px var(--rand) 64px;
+    align-items: start;
+  }
+
+  .ablauf-spalte {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ablauf-neben {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 72px;
+  }
+
+  .schritte {
+    margin-top: 24px;
+  }
+
+  .foto-ablauf {
+    margin-top: 0;
+  }
+
+  /* "Was du brauchst" wird auf dem Desktop zur Karte neben dem Ablauf */
+  .brauchst {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 24px;
+    background: var(--weiss);
+    border: 1px solid var(--linie);
+    border-radius: var(--radius-gross);
+  }
+
+  .brauchst h2 {
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .mitbringen {
+    font-size: 15px;
+    margin-top: 0;
+  }
+
+  .haken-liste {
+    margin-top: 0;
+    gap: 8px;
+  }
+
+  /* Preise: grosse Karte links, Zusatzleistungen rechts */
+  .preise {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 32px;
+    padding: 40px var(--rand) 64px;
+    align-items: start;
+  }
+
+  .preise > h2 {
+    grid-column: 1 / -1;
+  }
+
+  .preis-karte {
+    padding: 30px 32px;
+    gap: 16px;
+    margin-top: 0;
+    align-items: flex-start;
+  }
+
+  .preis-karte > * {
+    width: 100%;
+  }
+
+  .preis-kopf h3 {
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .preis-zahl {
+    font-size: 38px;
+  }
+
+  .preis-karte .leistungen {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .aktion {
+    padding: 16px 18px;
+  }
+
+  .aktion p:last-child {
+    font-size: 17px;
+  }
+
+  .preise .btn {
+    width: auto;
+    margin-top: 0;
+  }
+
+  .preis-neben {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .preis-liste {
+    margin-top: 0;
+  }
+
+  .preis-liste div {
+    padding: 16px 20px;
+  }
+
+  .rechtszeile {
+    margin-top: 0;
+  }
+
+  /* Ueber mich + FAQ nebeneinander */
+  .ueber-faq {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 64px;
+    padding: 40px var(--rand) 72px;
+    align-items: start;
+  }
+
+  .ueber-mich,
+  .faq {
+    padding: 0;
+  }
+
+  .ueber-mich h2,
+  .faq h2 {
+    font-size: 28px;
+  }
+
+  .foto-portrait {
+    width: 140px;
+    height: 140px;
+  }
+
+  .ueber-mich p {
+    line-height: 1.65;
+  }
+
+  .faq-liste {
+    margin-top: 16px;
+  }
+
+  .faq-liste > div {
+    gap: 4px;
+  }
+
+  /* Kontakt zweispaltig */
+  .kontakt {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 64px;
+    padding: 64px var(--rand) 48px;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .kontakt h2 {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  .kontakt-text {
+    font-size: 17px;
+  }
+
+  .kontakt-knoepfe {
+    padding-top: 0;
+  }
+
+  /* Fusszeile einzeilig */
+  .fuss {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 22px var(--rand) 28px;
+  }
+
+  .fuss nav {
+    gap: 20px;
+  }
+
+  .rechtstext {
+    padding: 56px var(--rand) 72px;
+  }
+
+  .rechtstext h1 {
+    font-size: 40px;
+  }
+}
+
+/* Kontakt und Fusszeile sind dunkel und laufen ueber die volle Fensterbreite.
+   Damit ihr Inhalt trotzdem buendig unter den hellen Abschnitten sitzt, waechst
+   der Seitenrand mit, sobald das Fenster breiter als die Entwurfsbreite ist. */
+@media (min-width: 800px) {
+  .kontakt,
+  .fuss {
+    padding-left: max(var(--rand), calc((100% - 1280px) / 2 + var(--rand)));
+    padding-right: max(var(--rand), calc((100% - 1280px) / 2 + var(--rand)));
+  }
+}
+
+/* --- Druck --------------------------------------------------------------- */
+
+@media print {
+  .kopf,
+  .hauptnav,
+  .menu-knopf,
+  .skip-link,
+  .hero-knoepfe,
+  .kontakt-knoepfe {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+  }
+}
