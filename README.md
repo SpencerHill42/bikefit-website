@@ -82,6 +82,45 @@ tieferen Ton (`--terracotta-tief`, `#B85334`) — weißer Text auf dem hellen Te
 nur 3,1:1 Kontrast und wäre für Menschen mit eingeschränkter Sehkraft schwer zu lesen. Die
 Begründung steht ausführlich im Kopf von `styles.css`.
 
+## DNS — und was zu tun ist, wenn die Seite mal nicht erreichbar ist
+
+Die Domain liegt bei Strato, gehostet wird bei GitHub Pages. Eingetragen ist:
+
+| Typ | Name | Wert |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| CNAME | `www` | `spencerhill42.github.io` |
+
+**Nur ein A-Record statt der von GitHub empfohlenen vier** — Stratos Formular lässt
+genau eine eigene IP-Adresse zu. Das ist kein Versehen und im Alltag folgenlos: die vier
+GitHub-Adressen sind Anycast, jede einzelne führt bereits auf das weltweite Edge-Netz. Die
+Seite hängt also nicht an einer Maschine.
+
+Genau ein Fall bleibt offen, und deshalb steht das hier: **zieht GitHub irgendwann die
+Adresse `185.199.108.153` zurück, ist die Seite weg** — ohne Vorwarnung und mit einem
+Fehlerbild, das nach „Website kaputt" aussieht statt nach „DNS". Wenn das passiert, ist der
+erste Handgriff, bei Strato eine der drei anderen Adressen einzutragen:
+
+```
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+Vorher prüfen, ob es wirklich daran liegt:
+
+```bash
+dig +short bikefit-muc.de A && curl -sS -o /dev/null -w '%{http_code}\n' https://bikefit-muc.de
+```
+
+`www.bikefit-muc.de` ist davon nicht betroffen: der CNAME löst immer auf alle vier
+aktuellen Adressen auf und leitet dann auf die Hauptdomain weiter. Ein Aufruf mit `www`
+funktioniert also unter Umständen noch, wenn die nackte Domain nicht mehr geht — das ist
+schon der halbe Beweis, dass es am A-Record liegt.
+
+Ein AAAA-Record (IPv6) ist nicht gesetzt. In deutschen Mobilfunknetzen ist das folgenlos,
+weil dort DNS64/NAT64 aus dem A-Record eine IPv6-Adresse bildet.
+
 ## Veröffentlichen
 
 GitHub Pages baut aus dem Branch `main`, Ordner `/` (root). Ein `git push` genügt; es gibt keinen
