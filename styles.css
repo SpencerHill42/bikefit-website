@@ -457,6 +457,13 @@ img.foto-portrait {
   border-radius: var(--radius);
 }
 
+/* Rahmen um ein ECHTES Bild: er traegt nur noch die Groesse. Die Polsterung
+   von .foto-portrait war fuer den Platzhaltertext da und wuerde das Bild sonst
+   auf 96 statt 120 px schrumpfen. */
+.foto-rahmen {
+  padding: 0;
+}
+
 img.foto-portrait {
   border-radius: 50%;
   padding: 0;

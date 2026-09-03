@@ -239,10 +239,14 @@
   <div class="ueber-faq inhalt">
 
     <section id="ueber-mich" class="sektion ueber-mich" aria-labelledby="ueber-titel">
-      <!-- FOTO 3 – Platzhalter -->
-      <div class="foto-platz foto-portrait" role="img"
-           aria-label="Platzhalter für Foto 3: Armin am Rad, beim Einstellen">
-        <p>Foto 3<br>Armin am Rad</p>
+      <!-- Das <img> steht IN einem .foto-portrait, nicht statt dessen: die Klasse
+           traegt die 120x120-Groesse, und img.foto-portrait setzt width/height auf
+           100% - beide auf demselben Element gesetzt gewinnt der img-Selektor
+           (hoehere Spezifitaet), und das Bild waere so breit wie der Abschnitt.
+           Bei .foto-hero faellt das nicht auf, die arbeitet mit aspect-ratio. -->
+      <div class="foto-portrait foto-rahmen">
+        <img class="foto-portrait" src="assets/armin.jpg" width="800" height="800"
+             alt="Porträt von Armin Sedlmeyr" loading="lazy" decoding="async">
       </div>
       <h2 id="ueber-titel">Armin Sedlmeyr</h2>
       <p>Ingenieur, Data Scientist – und seit 2023 auf dem Rennrad.</p>
