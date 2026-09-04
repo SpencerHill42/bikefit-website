@@ -469,6 +469,57 @@ img.foto-portrait {
   padding: 0;
 }
 
+/* --- Foto-Stapel: zwei echte Fotos statt eines, leicht ueberlappend --------
+   .foto-hero / .foto-ablauf geben weiterhin Groesse, Seitenverhaeltnis und
+   Position im Grid vor (siehe oben) - .foto-stapel macht daraus nur noch
+   den Rahmen fuer zwei <img>. Das kleine Bild sitzt in der Ecke, leicht
+   gedreht, mit weissem Rand wie ein aufgelegtes Foto. Dafuer braucht es
+   einen zarten Schatten, sonst verschwimmt die Kante mit dem Hauptbild -
+   einzige bewusste Ausnahme von der sonst schattenlosen Optik der Seite. */
+.foto-stapel {
+  position: relative;
+}
+
+.foto-stapel-haupt {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.foto-stapel-klein {
+  /* Feste Groesse statt %+aspect-ratio: bei einem absolut positionierten <img>
+     mit nur right/bottom (kein top) ignorieren Chrome/Safari aspect-ratio fuer
+     die Hoehe und nehmen stattdessen die volle Bildhoehe - das gleiche feste-
+     Groessen-Muster wie bei .foto-portrait oben ist hier der robuste Weg. */
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 118px;
+  height: 157px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 4px solid var(--weiss);
+  transform: rotate(-4deg);
+  box-shadow: 0 6px 18px rgba(27, 25, 23, 0.18);
+}
+
+/* Bei Foto 2 liegt "Was du brauchst" rechts daneben (ab 800px) - das kleine
+   Bild deshalb auf die linke Seite, damit es dort nicht mit dem Text kollidiert. */
+.foto-ablauf .foto-stapel-klein {
+  right: auto;
+  left: 10px;
+  transform: rotate(4deg);
+}
+
+@media (min-width: 800px) {
+  .foto-stapel-klein {
+    width: 168px;
+    height: 224px;
+  }
+}
+
 /* --- Gruende (Karten) ---------------------------------------------------- */
 
 .karten {

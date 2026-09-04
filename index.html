@@ -81,10 +81,14 @@
       <p class="kleinzeile">199 € · ca. 90 Minuten · München Stadtgebiet · Rennrad &amp; Gravel</p>
     </div>
 
-    <!-- FOTO 1 – Platzhalter, bis das echte Bild da ist -->
-    <div class="foto-platz foto-hero" role="img"
-         aria-label="Platzhalter für Foto 1: Setup beim Kunden – Rad auf der Rolle, Kamera auf Stativ, Laptop">
-      <p>Foto 1 – Setup beim Kunden:<br>Rad auf der Rolle, Kamera auf Stativ, Laptop</p>
+    <!-- FOTO 1: Kreuzlinienlaser mit Lot vermisst die Sitzposition, im Vordergrund die
+         Kamera auf Stativ. .foto-hero traegt weiterhin Groesse/Position im Grid (siehe
+         styles.css), .foto-stapel legt die zwei <img> uebereinander (Ticket "Website-Fotos"). -->
+    <div class="foto-hero foto-stapel">
+      <img class="foto-stapel-haupt" src="assets/foto-setup.jpg" width="1400" height="1050"
+           alt="Kreuzlinienlaser mit Lot misst die Sitzposition auf der Rolle">
+      <img class="foto-stapel-klein" src="assets/foto-setup-klein.jpg" width="640" height="853"
+           alt="Kamera auf Stativ filmt seitlich waehrend des Fittings">
     </div>
   </section>
 
@@ -160,10 +164,12 @@
     </div>
 
     <div class="ablauf-neben">
-      <!-- FOTO 2 – Platzhalter -->
-      <div class="foto-platz foto-ablauf" role="img"
-           aria-label="Platzhalter für Foto 2: Laptop am Rad, Ergebnis mit Skelett-Overlay und Winkeln">
-        <p>Foto 2 – Laptop am Rad:<br>Ergebnis mit Skelett-Overlay und Winkeln</p>
+      <!-- FOTO 2: Laptop mit Skelett-Overlay und Gelenkwinkeln, daneben beim Erklaeren. -->
+      <div class="foto-ablauf foto-stapel">
+        <img class="foto-stapel-haupt" src="assets/foto-ergebnis.jpg" width="1400" height="875"
+             alt="Laptop zeigt die Analyse mit Skelett-Overlay und gemessenen Gelenkwinkeln">
+        <img class="foto-stapel-klein" src="assets/foto-ergebnis-klein.jpg" width="640" height="853"
+             alt="Armin bespricht das Ergebnis direkt am Laptop neben dem Rad">
       </div>
 
       <section class="sektion brauchst" aria-labelledby="brauchst-titel">
