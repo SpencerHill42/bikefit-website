@@ -734,6 +734,18 @@ img.foto-portrait {
   line-height: 1.4;
 }
 
+/* Link auf das Google-Bewertungsformular im Aktionskasten: weiss wie der Text,
+   unterstrichen, damit er auf dem Terracotta-Grund als Link erkennbar bleibt. */
+.aktion a {
+  color: var(--weiss);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.aktion a:hover {
+  text-decoration-thickness: 2px;
+}
+
 .preis-liste {
   display: flex;
   flex-direction: column;

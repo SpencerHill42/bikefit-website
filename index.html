@@ -27,6 +27,45 @@
 
 <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
+
+<!-- Strukturierte Daten fuer Google (LocalBusiness). Adresse und Kontakt wie im
+     Impressum; hasMap/sameAs verknuepfen die Seite mit dem Unternehmensprofil.
+     Keine Oeffnungszeiten: Termine nach Vereinbarung. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://bikefit-muc.de/#unternehmen",
+  "name": "Mobile BikeFit München",
+  "description": "Mobiles Bike Fitting bei dir zuhause in München: Videoanalyse der Sitzposition, Einstellung von Sattel, Lenker und Cleats, Kontrollvideo und Report. Rennrad und Gravel.",
+  "url": "https://bikefit-muc.de/",
+  "image": "https://bikefit-muc.de/assets/og-titelbild.jpg",
+  "logo": "https://bikefit-muc.de/assets/logo-mark.png",
+  "telephone": "+49 1577 1829507",
+  "email": "info@bikefit-muc.de",
+  "founder": { "@type": "Person", "name": "Armin Sedlmeyr" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rupprechtstraße 3",
+    "postalCode": "80636",
+    "addressLocality": "München",
+    "addressCountry": "DE"
+  },
+  "areaServed": { "@type": "City", "name": "München" },
+  "priceRange": "149–199 €",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Bar, Überweisung, Karte",
+  "hasMap": "https://maps.google.com/?cid=6575537688166029984",
+  "sameAs": ["https://maps.google.com/?cid=6575537688166029984"],
+  "makesOffer": {
+    "@type": "Offer",
+    "name": "Mobiles Bike Fitting (Rennrad und Gravel)",
+    "price": "199",
+    "priceCurrency": "EUR",
+    "url": "https://bikefit-muc.de/#preise"
+  }
+}
+</script>
 </head>
 
 <body>
@@ -226,7 +265,8 @@
           zwischen den <b>-Tags um eins verringern (10 → 9 → 8 …). Sonst nichts ändern.
           Bei 0: den ganzen Block <div class="aktion"> … </div> löschen oder auskommentieren.
         -->
-        <p>149 € für die ersten 10 Fittings – gegen eine ehrliche Google-Bewertung.
+        <p>149 € für die ersten 10 Fittings – gegen eine ehrliche
+          <a href="https://g.page/r/CaBaVE6wAEFbEBM/review" rel="noopener" target="_blank">Google-Bewertung</a>.
           Noch <b>10</b> von 10.</p>
       </div>
 
@@ -338,12 +378,10 @@
   <nav aria-label="Rechtliches">
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
-    <!--
-      Google-Bewertungen: sobald das Unternehmensprofil live ist, diese Zeile
-      durch einen Link ersetzen:
-      <a href="LINK-ZUM-PROFIL" rel="noopener">Google-Bewertungen</a>
-    -->
-    <span class="noch-offen">Google-Bewertungen (folgt)</span>
+    <!-- Google-Unternehmensprofil (live seit 09/2026). Die cid-Adresse ist die
+         stabile Form des Profil-Links; der share.google-Link laeuft ueber eine
+         Suchseite und kann sich aendern. -->
+    <a href="https://maps.google.com/?cid=6575537688166029984" rel="noopener" target="_blank">Google-Bewertungen</a>
   </nav>
 </footer>
 
