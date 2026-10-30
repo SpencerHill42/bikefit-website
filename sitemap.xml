@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Nur indexierbare Seiten. Impressum und Datenschutz tragen noindex und stehen deshalb
+     bewusst nicht hier. lastmod bei jeder inhaltlichen Aenderung der Seite anpassen. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://bikefit-muc.de/</loc>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://bikefit-muc.de/bikefitting-rennrad-muenchen.html</loc>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+</urlset>

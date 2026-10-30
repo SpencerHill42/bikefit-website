@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Mobile Bike Fitting München – bei dir zuhause | Mobile BikeFit München</title>
-<meta name="description" content="Bike Fitting bei dir zuhause in München: Videoanalyse deiner Sitzposition, Einstellung von Sattel, Lenker und Cleats, Kontrollvideo und Report. Rennrad und Gravel, 199 €, bis zu 2,5 Stunden.">
+<title>Bikefitting München – mobiles Bike Fitting bei dir zuhause</title>
+<meta name="description" content="Bikefitting in München bei dir zuhause: Sitzposition per Video messen, Sattel, Lenker und Cleats einstellen, Kontrollvideo und Report. Rennrad und Gravel, 199 €.">
 <link rel="canonical" href="https://bikefit-muc.de/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="Mobile BikeFit München">
-<meta property="og:title" content="Bike Fitting bei dir zuhause. Gemessen, nicht geschätzt.">
+<meta property="og:title" content="Bikefitting München bei dir zuhause. Gemessen, nicht geschätzt.">
 <meta property="og:description" content="Ich komme mit Rolle, Kamera und Werkzeug zu dir nach München, analysiere deine Sitzposition per Video und stelle dein Rennrad oder Gravelbike direkt ein – mit Kontrollvideo und Report.">
 <meta property="og:url" content="https://bikefit-muc.de/">
 <meta property="og:image" content="https://bikefit-muc.de/assets/og-titelbild.jpg">
@@ -28,42 +28,68 @@
 <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 
-<!-- Strukturierte Daten fuer Google (LocalBusiness). Adresse und Kontakt wie im
-     Impressum; hasMap/sameAs verknuepfen die Seite mit dem Unternehmensprofil.
-     Keine Oeffnungszeiten: Termine nach Vereinbarung. -->
+<!-- Strukturierte Daten fuer Google. Adresse und Kontakt wie im Impressum; hasMap/sameAs
+     verknuepfen die Seite mit dem Google-Unternehmensprofil. Keine Oeffnungszeiten (Termine
+     nach Vereinbarung) und KEIN aggregateRating: Eigenbewertungen auf der eigenen Seite sind
+     fuer Rich Results nicht zulaessig, die Sterne kommen aus dem Google-Profil selbst.
+     Preis und Angebote muessen zu den sichtbaren Preisen unten passen (199 EUR). -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://bikefit-muc.de/#unternehmen",
-  "name": "Mobile BikeFit München",
-  "description": "Mobiles Bike Fitting bei dir zuhause in München: Videoanalyse der Sitzposition, Einstellung von Sattel, Lenker und Cleats, Kontrollvideo und Report. Rennrad und Gravel.",
-  "url": "https://bikefit-muc.de/",
-  "image": "https://bikefit-muc.de/assets/og-titelbild.jpg",
-  "logo": "https://bikefit-muc.de/assets/logo-mark.png",
-  "telephone": "+49 1577 1829507",
-  "email": "info@bikefit-muc.de",
-  "founder": { "@type": "Person", "name": "Armin Sedlmeyr" },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Rupprechtstraße 3",
-    "postalCode": "80636",
-    "addressLocality": "München",
-    "addressCountry": "DE"
-  },
-  "areaServed": { "@type": "City", "name": "München" },
-  "priceRange": "149–199 €",
-  "currenciesAccepted": "EUR",
-  "paymentAccepted": "Bar, Überweisung, Karte",
-  "hasMap": "https://maps.google.com/?cid=6575537688166029984",
-  "sameAs": ["https://maps.google.com/?cid=6575537688166029984"],
-  "makesOffer": {
-    "@type": "Offer",
-    "name": "Mobiles Bike Fitting (Rennrad und Gravel)",
-    "price": "199",
-    "priceCurrency": "EUR",
-    "url": "https://bikefit-muc.de/#preise"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://bikefit-muc.de/#website",
+      "url": "https://bikefit-muc.de/",
+      "name": "Mobile BikeFit München",
+      "alternateName": ["BikeFit München", "Bikefitting München"],
+      "inLanguage": "de-DE",
+      "publisher": { "@id": "https://bikefit-muc.de/#unternehmen" }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://bikefit-muc.de/#unternehmen",
+      "name": "Mobile BikeFit München",
+      "alternateName": "Mobile Bikefitting München",
+      "description": "Mobiles Bikefitting (Bike Fitting, Radfitting) bei dir zuhause in München: Videoanalyse der Sitzposition, Einstellung von Sattel, Lenker und Cleats, Kontrollvideo und Report. Rennrad und Gravel.",
+      "url": "https://bikefit-muc.de/",
+      "image": "https://bikefit-muc.de/assets/og-titelbild.jpg",
+      "logo": "https://bikefit-muc.de/assets/logo-mark.png",
+      "telephone": "+49 1577 1829507",
+      "email": "info@bikefit-muc.de",
+      "founder": { "@type": "Person", "name": "Armin Sedlmeyr" },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rupprechtstraße 3",
+        "postalCode": "80636",
+        "addressLocality": "München",
+        "addressCountry": "DE"
+      },
+      "areaServed": { "@type": "City", "name": "München" },
+      "knowsLanguage": "de",
+      "priceRange": "149–199 €",
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Bar, Überweisung, Karte",
+      "hasMap": "https://maps.google.com/?cid=6575537688166029984",
+      "sameAs": ["https://maps.google.com/?cid=6575537688166029984"],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "price": "199",
+          "priceCurrency": "EUR",
+          "url": "https://bikefit-muc.de/bikefitting-rennrad-muenchen.html",
+          "itemOffered": { "@type": "Service", "name": "Bikefitting Rennrad München", "serviceType": "Bikefitting" }
+        },
+        {
+          "@type": "Offer",
+          "price": "199",
+          "priceCurrency": "EUR",
+          "url": "https://bikefit-muc.de/#rad-wahl-titel",
+          "itemOffered": { "@type": "Service", "name": "Bikefitting Gravelbike München", "serviceType": "Bikefitting" }
+        }
+      ]
+    }
+  ]
 }
 </script>
 </head>
@@ -108,11 +134,12 @@
   <!-- ===================== Hero ===================== -->
   <section class="hero inhalt">
     <div class="hero-spalte">
-      <p class="eyebrow">Bike Fitting · Rennrad &amp; Gravel</p>
-      <h1>Bike Fitting bei dir zuhause. Gemessen, nicht geschätzt.</h1>
+      <p class="eyebrow">Bikefitting · Rennrad &amp; Gravel</p>
+      <h1>Bikefitting in München bei dir zuhause. Gemessen, nicht geschätzt.</h1>
       <p class="hero-text">Ich komme mit Rolle, Kamera und Werkzeug zu dir nach München, analysiere
         deine Sitzposition per Video und stelle dein Rennrad oder Gravelbike direkt ein – mit
-        Kontrollvideo und Report.</p>
+        Kontrollvideo und Report. Das Bike Fitting findet bei dir zuhause statt, du musst nirgends
+        hinfahren.</p>
       <div class="hero-knoepfe">
         <a class="btn btn-primaer" href="#kontakt">Termin anfragen</a>
         <a class="btn btn-sekundaer" href="#ablauf">So läuft's ab</a>
@@ -125,7 +152,7 @@
          styles.css), .foto-stapel legt die zwei <img> uebereinander (Ticket "Website-Fotos"). -->
     <div class="foto-hero foto-stapel">
       <img class="foto-stapel-haupt" src="assets/foto-setup.jpg" width="1400" height="1050"
-           alt="Kreuzlinienlaser mit Lot misst die Sitzposition auf der Rolle">
+           alt="Bikefitting in München: Kreuzlinienlaser mit Lot misst die Sitzposition auf der Rolle">
       <img class="foto-stapel-klein" src="assets/foto-setup-klein.jpg" width="640" height="853"
            alt="Kamera auf Stativ filmt seitlich waehrend des Fittings">
     </div>
@@ -149,6 +176,25 @@
         <h3>Länger und effizienter fahren.</h3>
         <p>Eine Position, die zu deinem Ziel passt – Komfort auf der Langstrecke oder Effizienz im
           Wettkampf – ohne dass du dafür etwas kaufen musst.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Rennrad oder Gravel ===================== -->
+  <section class="sektion rad-wahl inhalt" aria-labelledby="rad-wahl-titel">
+    <h2 id="rad-wahl-titel">Bikefitting fürs Rennrad und fürs Gravelbike</h2>
+    <div class="karten karten-zwei">
+      <div class="karte">
+        <h3>Rennrad</h3>
+        <p>Sportliche Haltung, viel Gewicht auf Händen und Sattel: Sattelhöhe, Sattelposition,
+          Lenkerhöhe und Reach entscheiden, ob du lange und entspannt fährst.</p>
+        <a class="karte-link" href="bikefitting-rennrad-muenchen.html">Bikefitting Rennrad in München</a>
+      </div>
+      <div class="karte">
+        <h3>Gravelbike</h3>
+        <p>Aufrechter, breiterer Lenker, wechselnder Untergrund: Für Gravel gelten eigene
+          Zielbereiche, nicht einfach die vom Rennrad. Fährst du dein Gravelbike überwiegend auf
+          Asphalt, legen wir die Position dafür aus.</p>
       </div>
     </div>
   </section>
@@ -206,7 +252,7 @@
       <!-- FOTO 2: Laptop mit Skelett-Overlay und Gelenkwinkeln, daneben beim Erklaeren. -->
       <div class="foto-ablauf foto-stapel">
         <img class="foto-stapel-haupt" src="assets/foto-ergebnis.jpg" width="1400" height="875"
-             alt="Laptop zeigt die Analyse mit Skelett-Overlay und gemessenen Gelenkwinkeln">
+             alt="Bikefitting-Analyse am Laptop: Skelett-Overlay mit gemessenen Gelenkwinkeln">
         <img class="foto-stapel-klein" src="assets/foto-ergebnis-klein.jpg" width="640" height="853"
              alt="Armin bespricht das Ergebnis direkt am Laptop neben dem Rad">
       </div>
@@ -305,6 +351,28 @@
       <h2 id="faq-titel">Häufige Fragen</h2>
       <div class="faq-liste">
         <div>
+          <h3>Was ist ein Bikefitting?</h3>
+          <p>Beim Bikefitting (auch Bike Fitting oder Radfitting genannt) wird dein Rad auf dich
+            eingestellt: Sattelhöhe, Sattelposition, Lenker, Vorbau und Cleats. Ich messe deine
+            Gelenkwinkel dafür per Video, statt nur nach Gefühl oder Faustformel zu gehen.</p>
+        </div>
+        <div>
+          <h3>Was kostet ein Bikefitting in München?</h3>
+          <p>199 € für ein komplettes Fitting von bis zu 2,5 Stunden. Anfahrt im Münchner
+            Stadtgebiet, Kontrollvideo und Report sind enthalten. Ob gerade ein
+            Einführungspreis gilt, steht unter <a href="#preise">Preise</a>.</p>
+        </div>
+        <div>
+          <h3>Kommst du zu mir nach Hause?</h3>
+          <p>Ja, das Fitting findet bei dir zuhause statt. Ich bringe Rolle, Kamera und Werkzeug
+            mit, du brauchst etwa 2 × 3 m Platz. Das Umland ist auf Anfrage möglich.</p>
+        </div>
+        <div>
+          <h3>Wann lohnt sich ein Bikefitting?</h3>
+          <p>Wenn etwas zwickt (Knie, Rücken, Nacken, Hände, Sitzbeschwerden), wenn du ein neues
+            Rad oder neue Teile hast oder wenn du länger und effizienter fahren willst.</p>
+        </div>
+        <div>
           <h3>Was brauche ich?</h3>
           <p>Nur dein Rad, Radschuhe und enge Radkleidung. Rolle und alles andere bringe ich
             mit.</p>
@@ -353,6 +421,17 @@
 
   </div>
 
+  <!-- ===================== Einzugsgebiet ===================== -->
+  <!-- NUR Stadtteile aufzaehlen, die wirklich angefahren werden. Der Satz "ganzes
+       Stadtgebiet" steht schon in der Kleinzeile oben; die Liste ist nur Beispiel. -->
+  <section id="einzugsgebiet" class="sektion einzugsgebiet inhalt" aria-labelledby="gebiet-titel">
+    <h2 id="gebiet-titel">Bikefitting in ganz München – ich komme zu dir</h2>
+    <p>Ich komme ins gesamte Münchner Stadtgebiet, zum Beispiel nach Neuhausen, Nymphenburg,
+      Maxvorstadt, Schwabing, Haidhausen, Sendling, Giesing, Bogenhausen, Laim oder Pasing.
+      Die Anfahrt in München ist im Preis enthalten. Umland auf Anfrage, dann mit Anfahrt nach
+      Aufwand.</p>
+  </section>
+
   <!-- ===================== Kontakt ===================== -->
   <section id="kontakt" class="kontakt" aria-labelledby="kontakt-titel">
     <div class="kontakt-spalte">
@@ -375,6 +454,9 @@
 <!-- ===================== Fußzeile ===================== -->
 <footer class="fuss">
   <p>Mobile BikeFit München · Armin Sedlmeyr · Rennrad &amp; Gravel</p>
+  <nav aria-label="Angebote">
+    <a href="bikefitting-rennrad-muenchen.html">Bikefitting Rennrad München</a>
+  </nav>
   <nav aria-label="Rechtliches">
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
@@ -385,36 +467,7 @@
   </nav>
 </footer>
 
-<script>
-  /* Einziges Skript der Seite: Menü auf schmalen Bildschirmen auf- und zuklappen. */
-  (function () {
-    var knopf = document.getElementById('menu-knopf');
-    var nav = document.getElementById('hauptnav');
-    if (!knopf || !nav) return;
-
-    function setzen(offen) {
-      knopf.setAttribute('aria-expanded', offen ? 'true' : 'false');
-      knopf.setAttribute('aria-label', offen ? 'Menü schließen' : 'Menü öffnen');
-      nav.classList.toggle('offen', offen);
-    }
-
-    knopf.addEventListener('click', function () {
-      setzen(knopf.getAttribute('aria-expanded') !== 'true');
-    });
-
-    /* Nach dem Sprung zu einem Abschnitt soll das Menü nicht offen stehen bleiben. */
-    nav.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') setzen(false);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && knopf.getAttribute('aria-expanded') === 'true') {
-        setzen(false);
-        knopf.focus();
-      }
-    });
-  })();
-</script>
+<script src="assets/menu.js" defer></script>
 
 </body>
 </html>

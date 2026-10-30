@@ -10,6 +10,9 @@ Minuten ist es online.
 | Datei | Zweck |
 |---|---|
 | `index.html` | Die komplette Startseite mit allen Abschnitten. |
+| `bikefitting-rennrad-muenchen.html` | Unterseite fürs Rennrad (eigener Text, eigene Suchbegriffe „Bikefitting Rennrad München“). Eine Gravel-Unterseite gibt es bewusst nicht, Gravel steht auf der Startseite. |
+| `sitemap.xml`, `robots.txt` | Für Google. Neue indexierbare Seite: in die Sitemap eintragen und `lastmod` pflegen. Impressum und Datenschutz stehen bewusst nicht drin (`noindex`). |
+| `assets/menu.js` | Das einzige eigene Skript: Menü auf schmalen Bildschirmen. Startseite und Unterseite laden es. |
 | `impressum.html` | Pflichtangaben nach § 5 DDG. |
 | `datenschutz.html` | Bisher nur die Gliederung, der ausformulierte Text fehlt noch (siehe unten). |
 | `styles.css` | Das gesamte Aussehen, mobil zuerst, ab 800 px das Desktop-Layout. |
@@ -62,14 +65,24 @@ beschreibt, was zu sehen ist — er ersetzt das Bild für Screenreader und wenn 
   Vermerk „Text folgt“. Das ist Absicht: die Formulierungen sollen aus einem Generator kommen
   (z. B. e-recht24) und gegen die Punkte in `docs/website/inhalt.md` geprüft werden, nicht frei
   erfunden sein.
-- **Google-Bewertungslink.** In der Fußzeile steht „Google-Bewertungen (folgt)“ als reiner Text.
-  Sobald das Unternehmensprofil live ist, den Kommentar direkt darüber in `index.html` durch den
-  echten Link ersetzen.
+- **Bewertungs-Sterne im Schema.** Im JSON-LD steht bewusst kein `aggregateRating`: Eigenbewertungen
+  auf der eigenen Seite sind für Rich Results nicht zulässig, die Sterne zeigt Google aus dem
+  Unternehmensprofil. Das Profil ist in der Fußzeile und im Einführungspreis verlinkt.
+
+## Suchmaschinen (Stand 30.10.2026)
+
+Ziel sind lokale Suchen wie „Bikefitting München“, „Bike Fitting München“ und „Radfitting
+München“. Dafür gibt es: LocalBusiness- und WebSite-Schema in `index.html`, Leistung und
+Brotkrumen in der Unterseite, Sitemap, `robots.txt`, Canonical-Tags und Open-Graph-Daten. Beim
+Ändern von Preisen oder Adresse **das JSON-LD mitändern**, es muss zu den sichtbaren Angaben
+passen. Der Abschnitt „Einzugsgebiet“ nennt Stadtteile nur als Beispiele: nur Orte aufführen,
+die wirklich angefahren werden.
 
 ## Datenschutz im Aufbau
 
 Die Seite lädt **nichts von fremden Servern**: keine Cookies, kein Tracking, keine eingebetteten
-Karten, kein Google Fonts (die Schrift liegt unter `assets/fonts/`). Deshalb braucht sie auch
+Karten, kein Google Fonts (die Schrift liegt unter `assets/fonts/`). Die Google-Links sind
+gewöhnliche Verweise, geladen wird erst beim Klick. Deshalb braucht sie auch
 keinen Cookie-Banner. Das bleibt nur so, wenn nichts Externes nachträglich eingebunden wird —
 ein einziges `<script src="https://…">` oder ein eingebettetes Video kippt diese Aussage und
 damit auch den Datenschutztext.

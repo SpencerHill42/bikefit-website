@@ -1374,3 +1374,89 @@ img.foto-portrait {
     background: #fff;
   }
 }
+
+/* --- Unterseite Rennrad und neue Startseiten-Abschnitte (10/2026) --------------
+   Nur Ergaenzungen, bestehende Regeln bleiben unveraendert.                   */
+
+.karten-zwei {
+  gap: 16px;
+}
+
+.karte-link {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.hero .eyebrow a {
+  color: inherit;
+}
+
+.seitentext,
+.einzugsgebiet {
+  gap: 14px;
+}
+
+/* Zeilenlaenge begrenzen, ohne den Abschnitt selbst zu verengen - sonst sitzt er
+   mittig, waehrend Hero und Karten linksbuendig im 1280-px-Raster stehen. */
+.seitentext > *,
+.einzugsgebiet > * {
+  max-width: 760px;
+}
+
+.seitentext p,
+.einzugsgebiet p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--tinte-weich);
+  text-wrap: pretty;
+}
+
+.kurz-liste {
+  margin: 4px 0 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kurz-liste li {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tinte-weich);
+}
+
+.mehr-link {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media (min-width: 800px) {
+  .rad-wahl,
+  .einzugsgebiet,
+  .seitentext {
+    padding: 24px var(--rand) 40px;
+  }
+
+  .karten-zwei {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .seitentext h2,
+  .einzugsgebiet h2 {
+    font-size: 28px;
+  }
+
+  .faq.inhalt {
+    padding: 24px var(--rand) 64px;
+  }
+
+  .faq.inhalt h2 {
+    font-size: 28px;
+  }
+
+  .faq.inhalt .faq-liste {
+    max-width: 820px;
+  }
+}
