@@ -1378,8 +1378,8 @@ img.foto-portrait {
 /* --- Unterseite Rennrad und neue Startseiten-Abschnitte (10/2026) --------------
    Nur Ergaenzungen, bestehende Regeln bleiben unveraendert.                   */
 
-.karten-zwei {
-  gap: 16px;
+.karten-eins {
+  max-width: 760px;
 }
 
 .karte-link {
@@ -1439,8 +1439,8 @@ img.foto-portrait {
     padding: 24px var(--rand) 40px;
   }
 
-  .karten-zwei {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .karten-eins {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .seitentext h2,

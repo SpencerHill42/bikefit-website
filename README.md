@@ -10,7 +10,7 @@ Minuten ist es online.
 | Datei | Zweck |
 |---|---|
 | `index.html` | Die komplette Startseite mit allen Abschnitten. |
-| `bikefitting-rennrad-muenchen.html` | Unterseite fürs Rennrad (eigener Text, eigene Suchbegriffe „Bikefitting Rennrad München“). Eine Gravel-Unterseite gibt es bewusst nicht, Gravel steht auf der Startseite. |
+| `bikefitting-rennrad-gravel-muenchen.html` | Eine gemeinsame Unterseite für Rennrad und Gravel (dasselbe Fitting, derselbe Ablauf), mit den Suchbegriffen „Bikefitting Rennrad München“ und „Bikefitting Gravel München“. Bewusst keine getrennten Seiten. |
 | `sitemap.xml`, `robots.txt` | Für Google. Neue indexierbare Seite: in die Sitemap eintragen und `lastmod` pflegen. Impressum und Datenschutz stehen bewusst nicht drin (`noindex`). |
 | `assets/menu.js` | Das einzige eigene Skript: Menü auf schmalen Bildschirmen. Startseite und Unterseite laden es. |
 | `impressum.html` | Pflichtangaben nach § 5 DDG. |
