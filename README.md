@@ -28,16 +28,6 @@ Quelle der Texte und des Entwurfs ist das Haupt-Repo `bikefit`:
 
 ## Was sich regelmäßig ändert
 
-**Einführungspreis-Zähler.** In `index.html` im Abschnitt „Preise“ steht
-
-```html
-Noch <b>10</b> von 10.
-```
-
-Nach jedem vergebenen Einführungs-Fitting die Zahl um eins verringern. Bei 0 den ganzen Block
-`<div class="aktion"> … </div>` entfernen. Über der Zeile steht derselbe Hinweis noch einmal als
-Kommentar.
-
 **Fotos.** Es gibt drei Platzhalterflächen (Foto 1 Setup, Foto 2 Laptop mit Overlay, Foto 3
 Porträt). Ein Platzhalter sieht so aus:
 
@@ -67,7 +57,7 @@ beschreibt, was zu sehen ist — er ersetzt das Bild für Screenreader und wenn 
   erfunden sein.
 - **Bewertungs-Sterne im Schema.** Im JSON-LD steht bewusst kein `aggregateRating`: Eigenbewertungen
   auf der eigenen Seite sind für Rich Results nicht zulässig, die Sterne zeigt Google aus dem
-  Unternehmensprofil. Das Profil ist in der Fußzeile und im Einführungspreis verlinkt.
+  Unternehmensprofil. Das Profil ist in der Fußzeile verlinkt.
 
 ## Suchmaschinen (Stand 30.10.2026)
 

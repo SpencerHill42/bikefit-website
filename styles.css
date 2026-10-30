@@ -710,42 +710,6 @@ img.foto-portrait {
   color: var(--hell-auf-dunkel);
 }
 
-.aktion {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px;
-  background: var(--terracotta-tief);
-  border-radius: 6px;
-}
-
-.aktion-label {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--weiss);
-}
-
-.aktion p:last-child {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--weiss);
-  line-height: 1.4;
-}
-
-/* Link auf das Google-Bewertungsformular im Aktionskasten: weiss wie der Text,
-   unterstrichen, damit er auf dem Terracotta-Grund als Link erkennbar bleibt. */
-.aktion a {
-  color: var(--weiss);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.aktion a:hover {
-  text-decoration-thickness: 2px;
-}
-
 .preis-liste {
   display: flex;
   flex-direction: column;
@@ -1233,14 +1197,6 @@ img.foto-portrait {
   .preis-karte .leistungen {
     font-size: 15px;
     line-height: 1.65;
-  }
-
-  .aktion {
-    padding: 16px 18px;
-  }
-
-  .aktion p:last-child {
-    font-size: 17px;
   }
 
   .preise .btn {
