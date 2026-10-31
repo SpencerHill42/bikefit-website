@@ -417,6 +417,12 @@ img {
   line-height: 1.5;
 }
 
+/* <picture> mit WebP-Quelle soll das Layout nicht veraendern: die <img> verhalten sich
+   weiter wie direkte Kinder von .foto-stapel. */
+picture {
+  display: contents;
+}
+
 .foto-hero {
   aspect-ratio: 4 / 3;
 }

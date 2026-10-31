@@ -60,9 +60,8 @@
       "founder": { "@type": "Person", "name": "Armin Sedlmeyr" },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Rupprechtstraße 3",
-        "postalCode": "80636",
         "addressLocality": "München",
+        "addressRegion": "Bayern",
         "addressCountry": "DE"
       },
       "areaServed": { "@type": "City", "name": "München" },
@@ -143,10 +142,10 @@
          Kamera auf Stativ. .foto-hero traegt weiterhin Groesse/Position im Grid (siehe
          styles.css), .foto-stapel legt die zwei <img> uebereinander (Ticket "Website-Fotos"). -->
     <div class="foto-hero foto-stapel">
-      <img class="foto-stapel-haupt" src="assets/foto-setup.jpg" width="1400" height="1050" fetchpriority="high"
-           alt="Bikefitting in München: Kreuzlinienlaser mit Lot misst die Sitzposition auf der Rolle">
-      <img class="foto-stapel-klein" src="assets/foto-setup-klein.jpg" width="640" height="853"
-           alt="Kamera auf Stativ filmt seitlich während des Fittings">
+      <picture><source type="image/webp" srcset="assets/foto-setup-800.webp 800w, assets/foto-setup-1400.webp 1400w" sizes="(min-width: 800px) 560px, 100vw"><img class="foto-stapel-haupt" src="assets/foto-setup.jpg" width="1400" height="1050" fetchpriority="high"
+           alt="Bikefitting in München: Kreuzlinienlaser mit Lot misst die Sitzposition auf der Rolle"></picture>
+      <picture><source type="image/webp" srcset="assets/foto-setup-klein-400.webp 400w" sizes="170px"><img class="foto-stapel-klein" src="assets/foto-setup-klein.jpg" width="640" height="853"
+           alt="Kamera auf Stativ filmt seitlich während des Fittings"></picture>
     </div>
   </section>
 
@@ -240,10 +239,10 @@
     <div class="ablauf-neben">
       <!-- FOTO 2: Laptop mit Skelett-Overlay und Gelenkwinkeln, daneben beim Erklaeren. -->
       <div class="foto-ablauf foto-stapel">
-        <img class="foto-stapel-haupt" src="assets/foto-ergebnis.jpg" width="1400" height="875" loading="lazy" decoding="async"
-             alt="Bikefitting-Analyse am Laptop: Skelett-Overlay mit gemessenen Gelenkwinkeln">
-        <img class="foto-stapel-klein" src="assets/foto-ergebnis-klein.jpg" width="640" height="853" loading="lazy" decoding="async"
-             alt="Armin bespricht das Ergebnis direkt am Laptop neben dem Rad">
+        <picture><source type="image/webp" srcset="assets/foto-ergebnis-800.webp 800w, assets/foto-ergebnis-1400.webp 1400w" sizes="(min-width: 800px) 560px, 100vw"><img class="foto-stapel-haupt" src="assets/foto-ergebnis.jpg" width="1400" height="875" loading="lazy" decoding="async"
+             alt="Bikefitting-Analyse am Laptop: Skelett-Overlay mit gemessenen Gelenkwinkeln"></picture>
+        <picture><source type="image/webp" srcset="assets/foto-ergebnis-klein-400.webp 400w" sizes="170px"><img class="foto-stapel-klein" src="assets/foto-ergebnis-klein.jpg" width="640" height="853" loading="lazy" decoding="async"
+             alt="Armin bespricht das Ergebnis direkt am Laptop neben dem Rad"></picture>
       </div>
 
       <section class="sektion brauchst" aria-labelledby="brauchst-titel">
@@ -314,14 +313,25 @@
            (hoehere Spezifitaet), und das Bild waere so breit wie der Abschnitt.
            Bei .foto-hero faellt das nicht auf, die arbeitet mit aspect-ratio. -->
       <div class="foto-portrait foto-rahmen">
-        <img class="foto-portrait" src="assets/armin.jpg" width="800" height="800"
-             alt="Porträt von Armin Sedlmeyr" loading="lazy" decoding="async">
+        <picture><source type="image/webp" srcset="assets/armin-280.webp 280w" sizes="140px"><img class="foto-portrait" src="assets/armin.jpg" width="800" height="800"
+             alt="Porträt von Armin Sedlmeyr" loading="lazy" decoding="async"></picture>
       </div>
       <h2 id="ueber-titel">Armin Sedlmeyr</h2>
       <p>Ingenieur, Data Scientist – und seit 2023 auf dem Rennrad.</p>
-      <p>Das Analyse-Tool, mit dem ich deine Position messe, habe ich selbst gebaut:
-        gemessene Gelenkwinkel gegen Zielbereiche aus Fachliteratur und etablierten Fitting-Systemen, statt Faustformeln.</p>
-      <p>Mobile BikeFit München ist neu; ich fitte im Nebenberuf, mit Zeit für jeden Termin.</p>
+      <p>Eine Bikefitter-Ausbildung oder das Zertifikat eines Fitting-Systems habe ich nicht. Was
+        ich mitbringe, ist das Messwerkzeug: Ich habe es selbst gebaut. Zwei Modelle zur
+        Körpererkennung finden im Video Fuß, Knöchel, Knie, Hüfte, Schulter, Ellbogen und
+        Handgelenk. Das Tool misst die Winkel dort, wo die Kurbel unten und oben steht, und
+        vergleicht sie mit Zielbereichen für dein Ziel. Gegen eine etablierte Fitting-Software
+        habe ich es an eigenen Videos abgeglichen: Beim Kniewinkel am unteren Totpunkt liegt es im
+        Mittel 1,5° darüber (vier Videos, zwei Fahrer – noch eine kleine Stichprobe, und das sage
+        ich dir auch so).</p>
+      <p>Die Zielbereiche stammen aus Fachliteratur und aus etablierten Fitting-Systemen. Wie gut
+        der jeweilige Bereich belegt ist, sage ich dir. Für die Sattelhöhe gibt es Studien, für
+        den Rückenwinkel nur Erfahrungswerte.</p>
+      <p>Mobile BikeFit München ist neu; ich fitte im Nebenberuf, mit Zeit für jeden Termin.
+        Was Kundinnen und Kunden nach ihrem Fitting schreiben, liest du in meinen
+        <a href="https://maps.google.com/?cid=6575537688166029984" rel="noopener" target="_blank">Bewertungen auf Google</a>.</p>
     </section>
 
     <section id="faq" class="sektion faq" aria-labelledby="faq-titel">
@@ -393,6 +403,18 @@
             das eigene Tool.</p>
           <p>Ich bin weder Arzt noch Physiotherapeut. Ein Fitting ist keine Behandlung, und
             anhaltende Beschwerden gehören ärztlich abgeklärt.</p>
+        </div>
+        <div>
+          <h3>Woran erkenne ich ein gutes Bikefitting?</h3>
+          <p>Ein paar Fragen, die du jedem Fitter stellen kannst, mir eingeschlossen: Wird in
+            Bewegung gemessen oder nur aus Körpermaßen gerechnet? Gibt es Zielbereiche, die zu
+            deinem Ziel passen, statt eines einzigen „richtigen“ Werts? Bekommst du die Werte
+            vorher und nachher schriftlich? Stehen Preis, Dauer und Umfang vorher fest? Sagt dir
+            der Fitter, wo seine Grenzen sind, und schickt er dich bei Schmerzen zum Arzt?</p>
+          <p>In München gibt es zertifizierte Fitter in Studios und Radläden, oft mit eigener
+            Messtechnik. Ich habe kein Zertifikat. Dafür komme ich zu dir, du kannst jede Zahl in
+            deinem Protokoll nachvollziehen, und ich sage dir, woher sie kommt. Was dir wichtiger
+            ist, entscheidest du.</p>
         </div>
         <div>
           <h3>Kann ich ein Bikefitting selbst machen?</h3>
